@@ -6,21 +6,30 @@ const Player = ({ name, symbol }) => {
   const [playerName, setPlayerName] = useState(name);
 
   const handleChange = (event) => {
-        setPlayerName( prev => {
-            return prev = event.target.value
-        })
+    setPlayerName((prev) => {
+      return (prev = event.target.value);
+    });
+  };
+
+  const handleEditClick = () => {
+    setIsEditing((editing) => !editing);
   };
 
   return (
     <li>
       <span className='player'>
         {isEditing ? (
-          <input type='text' required value={playerName} onChange={handleChange}/>
+          <input
+            type='text'
+            required
+            value={playerName}
+            onChange={handleChange}
+          />
         ) : (
-          <span className='player-name'>{ playerName }</span>
+          <span className='player-name'>{playerName}</span>
         )}
         <span className='player-symbol'>{symbol}</span>
-        <button onClick={()=>{setIsEditing(!isEditing)}}>{isEditing ? 'Save' : 'Edit'}</button>
+        <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
       </span>
     </li>
   );
